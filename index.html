@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eee9db">
+  <meta name="description" content="Signal Garden turns writing into deterministic botanical art, entirely in your browser.">
+  <meta property="og:title" content="Signal Garden">
+  <meta property="og:description" content="Grow a botanical print from any passage. Private, deterministic, local-first.">
+  <meta property="og:type" content="website">
+  <meta name="color-scheme" content="light dark">
+  <title>Signal Garden - grow a print from your words</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#studio">Skip to studio</a>
+  <header class="masthead">
+    <a class="wordmark" href="./" aria-label="Signal Garden home"><span aria-hidden="true">✣</span> SIGNAL GARDEN</a>
+    <div class="made">An original work by <a href="https://x.com/wraith_agent" rel="me">Wraith</a></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow">A local-first writing instrument</div>
+      <h1 id="hero-title">Every passage has<br>a hidden <em>shape.</em></h1>
+      <p>Signal Garden turns the rhythm of your writing into a botanical print. Same words, same garden. Nothing leaves your browser.</p>
+      <a class="down" href="#studio">Grow yours <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="studio" id="studio" aria-label="Signal Garden studio">
+      <div class="panel controls">
+        <div class="panel-head"><span>01</span><h2>Plant a passage</h2></div>
+        <label class="sr-only" for="passage">Passage to visualize</label>
+        <textarea id="passage" maxlength="2400" spellcheck="true">A small idea enters quietly. It finds the light, bends around doubt, and keeps growing. What changes when we give our attention somewhere to root?</textarea>
+        <div class="under-text"><span id="counter">0 / 2400</span><button class="text-button" id="sample" type="button">Try another seed</button></div>
+
+        <fieldset>
+          <legend>Paper</legend>
+          <div class="swatches" id="themes">
+            <button type="button" class="swatch active" data-theme="herbarium" aria-label="Herbarium theme" aria-pressed="true"><i></i>Herbarium</button>
+            <button type="button" class="swatch" data-theme="midnight" aria-label="Midnight theme" aria-pressed="false"><i></i>Midnight</button>
+            <button type="button" class="swatch" data-theme="blueprint" aria-label="Blueprint theme" aria-pressed="false"><i></i>Blueprint</button>
+            <button type="button" class="swatch" data-theme="ember" aria-label="Ember theme" aria-pressed="false"><i></i>Ember</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Growth</legend>
+          <div class="segmented">
+            <button type="button" data-growth="spare">Spare</button>
+            <button type="button" data-growth="natural" class="active">Natural</button>
+            <button type="button" data-growth="wild">Wild</button>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button class="primary" id="export" type="button">Export SVG <span aria-hidden="true">↗</span></button>
+          <button class="secondary" id="copy" type="button">Copy garden link</button>
+        </div>
+        <p class="privacy"><span aria-hidden="true">●</span> Private by design. Your text is never uploaded or stored. A copied garden link contains the passage, so share it only when you mean to share the words.</p>
+      </div>
+
+      <div class="panel canvas-panel">
+        <div class="panel-head canvas-head"><span>02</span><h2>Your garden</h2><button id="play" class="icon-button rhythm-button" title="Play the writing rhythm" aria-label="Play the writing rhythm">▶ rhythm</button><button id="regrow" class="icon-button" title="Regrow animation" aria-label="Regrow animation">↻</button></div>
+        <div class="canvas-wrap" id="canvasWrap">
+          <svg id="garden" role="img" aria-labelledby="gardenTitle gardenDesc" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+            <title id="gardenTitle">A botanical visualization of the entered passage</title>
+            <desc id="gardenDesc">Sentences form stems, words form leaves, and punctuation forms blooms.</desc>
+          </svg>
+          <div class="grain" aria-hidden="true"></div>
+        </div>
+        <div class="legend" aria-label="Visual key">
+          <span><i class="line"></i> sentence / stem</span>
+          <span><i class="leaf"></i> word / leaf</span>
+          <span><i class="bloom"></i> punctuation / bloom</span>
+        </div>
+        <div class="fingerprint" aria-label="Writing fingerprint">
+          <div><strong id="statWords">0</strong><span>words</span></div>
+          <div><strong id="statSentences">0</strong><span>stems</span></div>
+          <div><strong id="statVariety">0%</strong><span>unique</span></div>
+          <div><strong id="statCadence">0</strong><span>words / stem</span></div>
+        </div>
+        <p class="hint">Hover, focus, or tap a leaf to find the word that shaped it. <output id="wordReveal" aria-live="polite"></output></p>
+      </div>
+    </section>
+
+    <section class="how" aria-labelledby="how-title">
+      <div><div class="eyebrow">The grammar of growth</div><h2 id="how-title">Meaning stays yours.<br>Structure becomes visible.</h2></div>
+      <ol>
+        <li><span>01</span><div><h3>Sentences set direction</h3><p>Each sentence grows a stem. Its length and cadence decide the path.</p></div></li>
+        <li><span>02</span><div><h3>Words become leaves</h3><p>Word length shapes each leaf. Vocabulary variety changes the branching.</p></div></li>
+        <li><span>03</span><div><h3>Punctuation flowers</h3><p>Stops, questions, commas, and exclamations leave distinct blooms.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="manifesto">
+      <blockquote>“Tools can explain a piece of writing.<br>This one lets it grow.”</blockquote>
+      <p>Built from scratch with plain HTML, CSS, and JavaScript. No framework. No server. No analytics.</p>
+    </section>
+  </main>
+
+  <footer><span>Signal Garden · 2026</span><span>Designed &amp; built by Wraith</span><a href="https://github.com/wraith1337/signal-garden">Source ↗</a></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
